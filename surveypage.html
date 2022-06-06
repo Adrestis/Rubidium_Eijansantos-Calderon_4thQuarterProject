@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Q4 Project</title>
+<meta charset="utf8" />
+<meta name="author" content="Eijansantos-Calderon, Talan Marco R." />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="date"  content="" />
+
+<link rel="stylesheet" href="../css/stylesheet.css">
+
+</style>
+</head>
+
+<body>
+
+<h1>A Survey on your Preferred D&D Class and your Experience</h1>
+
+<form onsubmit="return SubmitFunction()" onreset="return reset()">
+	<fieldset>
+	    <legend>Please fill out the form below.</legend>
+
+	    <div class="questionbox"> 
+		<p><b>What Is Your Gender?</b></p>
+		<input type="radio" id="gendermale" name="gender" value="Male" required>
+		<label for="gendermale">Male</label><br>
+		
+		<input type="radio" id="genderfemale" name="gender" value="Female">
+		<label for="genderfemale">Female</label><br>
+
+		<input type="radio" id="genderna" name="gender" value="Prefer not to mention">
+		<label for="genderna">Prefer not to mention</label> 
+		</div> <br> <br>
+		
+
+		<div class="questionbox">
+		<p><b>Do you know about Dungeons & Dragons?</b></p>
+		<input type="radio" id="knowledgeyes" name="dndknowledge" value="Yes" required>
+		<label for="knowledgeyes">Yes</label><br>
+		
+		<input type="radio" id="knowledgeno" name="dndknowledge" value="No">
+		<label for="knowledgeno">No</label> 
+	    </div> <br> <br>
+		
+		
+		<div class="questionbox">
+		<p><b>Do you understand how Dungeons & Dragons 5th Edition works?</b></p>
+		<input type="radio" id="understandyes" name="dndunderstand" value="Yes" required>
+		<label for="understandyes">Yes</label><br>
+		
+		<input type="radio" id="understandno" name="dndunderstand" value="No">
+		<label for="understandno">No</label> 
+	    </div> <br> <br>
+		
+		
+		<div class="questionbox">
+		<p><b>Do you play Dungeons & Dragons on a consistent basis?</b></p>
+		<input type="radio" id="playtimeyes" name="dndplaytime" value="Yes" required>
+		<label for="playtimeyes">Yes</label><br>
+		
+		<input type="radio" id="playtimeno" name="dndplaytime" value="No">
+		<label for="playtimeno">No</label> 
+	    </div> <br> <br>
+		
+
+		<div class="questionbox">
+		<label for="timespent"><b>How many months have you played Dungeons & Dragons, whether by yourself (i.e. creating characters in theory or making D&D homebrew) or with others?</b></label> <br>
+		<input type="number" id="timespent" name="timespent" min="1" max="100">
+	    </div> <br> <br>
+		
+
+		<div class="questionbox">
+	    <p><b>What is your favorite D&D class?</b></p>
+		<input type="radio" id="class1" name="dndclasses" value="Artificer">
+		<label for="class1">Artificer</label><br>
+		
+		<input type="radio" id="class2" name="dndclasses" value="Barbarian">
+		<label for="class2">Barbarian</label><br>
+		
+		<input type="radio" id="class3" name="dndclasses" value="Bard">
+		<label for="class3">Bard</label><br>
+		
+		<input type="radio" id="class4" name="dndclasses" value="Cleric">
+		<label for="class4"> Cleric</label><br>
+		
+		<input type="radio" id="class5" name="dndclasses" value="Druid">
+		<label for="class5">Druid</label><br>
+		
+		<input type="radio" id="class6" name="dndclasses" value="Fighter">
+		<label for="class6">Fighter</label><br>
+		
+		<input type="radio" id="class7" name="dndclasses" value="Monk">
+		<label for="class7">Monk</label><br>
+		
+		<input type="radio" id="class8" name="dndclasses" value="Paladin">
+		<label for="class8">Paladin</label><br>
+		
+		<input type="radio" id="class9" name="dndclasses" value="Ranger">
+		<label for="class9">Ranger</label><br>
+		
+		<input type="radio" id="class10" name="dndclasses" value="Rogue">
+		<label for="class10">Rogue</label><br>
+		
+		<input type="radio" id="class11" name="dndclasses" value="Sorcerer">
+		<label for="class11">Sorcerer</label><br>
+		
+		<input type="radio" id="class12" name="dndclasses" value="Warlock">
+		<label for="class12">Warlock</label><br>
+		
+		<input type="radio" id="class13" name="dndclasses" value="Wizard">
+		<label for="class13">Wizard</label>
+	    </div> <br> <br>
+ 
+
+		<div class="questionbox">
+		<label for="sessionsplayed"><b>If you have played Dungeons & Dragons with others, how many sessions have you played with your preferred class?</b></label> <br>
+		<input type="number" id="sessionsplayed" name="sessionsplayed" min="1" max="1000">
+	    </div> <br> <br>
+
+
+	    <input type="submit" value="Submit">
+	    <input type="reset" value="Reset">
+	</fieldset>
+	<fieldset>
+	    <legend>Results appear here!</legend> 
+	    <p id="genderoutput"> </p>
+		<p id="knowledgeoutput"> </p>
+		<p id="understandoutput"> </p>
+		<p id="playtimeoutput"> </p>
+		<p id="timeoutput"> </p>
+		<p id="classoutput"> </p>
+		<p id="sessionoutput"> </p>
+	</fieldset>
+</form> 
+
+<script>
+function BlurFunction(formElement) {
+    if (formElement.value == ""){
+        formElement.style.border = "3px solid red";
+    }
+}
+
+function FocusFunction(formElement) {
+    formElement.style.border = "3px solid green";
+}
+
+function SubmitFunction () {
+	var radio = document.getElementsByName("gender");
+	var gender = Array.from(radio).find(radio => radio. checked);
+	localStorage.setItem(gender.name, gender.value);
+
+	var radio = document.getElementsByName("dndknowledge");
+	var knowledge = Array.from(radio).find(radio => radio. checked);
+	localStorage.setItem(knowledge.name, knowledge.value);
+
+	var radio = document.getElementsByName("dndunderstand");
+	var understand = Array.from(radio).find(radio => radio. checked);
+	localStorage.setItem(understand.name, understand.value);
+
+    var radio = document.getElementsByName("dndplaytime");
+	var play = Array.from(radio).find(radio => radio. checked);
+	localStorage.setItem(play.name, play.value);
+
+	var months = document.getElementById("timespent").value;
+	localStorage.setItem('timeinmonths', months);
+
+	var radio = document.getElementsByName("dndclasses");
+	var selected = Array.from(radio).find(radio => radio. checked);
+	localStorage.setItem(selected.name, selected.value);
+
+	var sesh = document.getElementById("sessionsplayed").value;
+	localStorage.setItem('seshtime', sesh);
+
+	let genderresult = localStorage.getItem(gender.name);
+	let knowledgeresult = localStorage.getItem(knowledge.name);
+	let understandresult = localStorage.getItem(understand.name);
+	let playresult = localStorage.getItem(play.name);
+	let timeinmonths = localStorage.getItem('timeinmonths');
+	let selectresult = localStorage.getItem(selected.name);
+	let seshtime = localStorage.getItem('seshtime');
+
+	document.getElementById("genderoutput").innerHTML = "What is your gender?: " + genderresult;
+	document.getElementById("knowledgeoutput").innerHTML = "Do you know Dungeons & Dragons?: " + knowledgeresult;
+	document.getElementById("understandoutput").innerHTML = "Do you understand D&D 5th Edition?: " + understandresult;
+	document.getElementById("playtimeoutput").innerHTML = "Do you play D&D consistently?: " + playresult;
+	document.getElementById("timeoutput").innerHTML = "How many months have you played D&D?: " + timeinmonths;
+	document.getElementById("classoutput").innerHTML = "What is your favorite D&D class?: " + selectresult;
+	document.getElementById("sessionoutput").innerHTML = "How many sessions have you played with your favorite class?: " + seshtime;
+
+	return false
+}
+</script>
+
+</body>
+</html>
